@@ -30,7 +30,7 @@ namespace ToDo.Tests
 
             var fullAssigmentString = newAssigmentText + string.Join(" ", tags.Select(s => "@" + s));
 
-            mainWindowViewModel.AssigmentText = newAssigmentText;
+            mainWindowViewModel.AssigmentText = fullAssigmentString;
 
             mainWindowViewModel.AddAssigment.Execute(null);
 

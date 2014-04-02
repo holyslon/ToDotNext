@@ -41,7 +41,7 @@
                                     <RowDefinition />
                                     <RowDefinition Height="29" />
                                 </Grid.RowDefinitions>
-                                <TextBlock Margin="5">Some task is writen here</TextBlock>
+                                <TextBlock Margin="5" Text="{Binding Text}"></TextBlock>
                                 <StackPanel Grid.Row="1" Margin="0,5,0,2" Orientation="Horizontal">
                                     <TextBlock Foreground="Blue" Margin="5,0,0,0">@tomorow</TextBlock>
                                     <TextBlock Foreground="IndianRed" Margin="5,0,0,0">@work</TextBlock>

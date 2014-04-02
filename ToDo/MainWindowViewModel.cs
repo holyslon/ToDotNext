@@ -41,7 +41,7 @@ namespace ToDo
 
             foreach (var i in Enumerable.Range(0,10))
             {
-                _avalibleTags.Add(new TagViewModel());
+                _avalibleTags.Add(new TagViewModel("some_tag"));
             }
         }
 

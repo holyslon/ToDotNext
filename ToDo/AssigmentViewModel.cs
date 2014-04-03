@@ -13,7 +13,11 @@ namespace ToDo
 
             var tags = splits.Where(s => s.StartsWith("#")).ToArray();
 
-            assigmentText = tags.Aggregate(assigmentText, (current, tag) => current.Replace(tag, "")).TrimEnd();
+            var tagsToRemove = splits.Reverse().TakeWhile(s => s.StartsWith("#")).Reverse().ToArray();
+
+            assigmentText = tagsToRemove.Aggregate(assigmentText, (current, tag) => current.Replace(tag, "")).TrimEnd();
+            assigmentText = tags.Except(tagsToRemove)
+                .Aggregate(assigmentText, (current, tag) => current.Replace(tag, tag.Substring(1)));
             Text = assigmentText;
             Tags = new ReadOnlyObservableCollection<TagViewModel>(_tags);
             foreach (var tag in tags)

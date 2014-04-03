@@ -25,7 +25,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type toDo:TagViewModel}">
                         <ToggleButton Background="White" BorderBrush="White"  Margin="0,0,0,0">
-                            <TextBlock Foreground="Blue">#tomorow</TextBlock>
+                            <TextBlock Foreground="Blue" Text="{Binding Text, StringFormat={}#{0}}"></TextBlock>
                         </ToggleButton>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

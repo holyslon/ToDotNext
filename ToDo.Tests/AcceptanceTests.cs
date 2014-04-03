@@ -5,7 +5,7 @@ using Xunit;
 namespace ToDo.Tests
 {
     
-    public class MainWindowViewModelTests
+    public class AcceptanceTests
     {
         [Fact]
         public void CreatesNewAssigmentOnAddAssigmentCommand()
@@ -59,7 +59,25 @@ namespace ToDo.Tests
             Assert.Equal(tags[0], mainWindowViewModel.Assigments[0].Tags[1].Text);
             Assert.Equal(tags[1], mainWindowViewModel.Assigments[0].Tags[2].Text);
             Assert.Equal(tags[2], mainWindowViewModel.Assigments[0].Tags[3].Text);
-            
+        }
+
+        [Fact]
+        public void NewTagsAppearsinMainTagList()
+        {
+            var mainWindowViewModel = new MainWindowViewModel();
+
+            const string newAssigmentText = "some new assigment text";
+            var tags = new[] { "work", "home", "csharp" };
+
+            var fullAssigmentString = newAssigmentText + " " + string.Join(" ", tags.Select(s => "#" + s));
+
+            mainWindowViewModel.AssigmentText = fullAssigmentString;
+
+            mainWindowViewModel.AddAssigment.Execute(null);
+
+            Assert.Equal(tags[0], mainWindowViewModel.AvalibleTags[0].Text);
+            Assert.Equal(tags[1], mainWindowViewModel.AvalibleTags[1].Text);
+            Assert.Equal(tags[2], mainWindowViewModel.AvalibleTags[2].Text); 
         }
     }
 }

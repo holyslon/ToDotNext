@@ -38,11 +38,6 @@ namespace ToDo
             Assigments = new ReadOnlyObservableCollection<AssigmentViewModel>(_assigments);
             AvalibleTags = new ReadOnlyObservableCollection<TagViewModel>(_avalibleTags);
             AddAssigment = new AddAssigmentCommand(this);
-
-            foreach (var i in Enumerable.Range(0,10))
-            {
-                _avalibleTags.Add(new TagViewModel("some_tag"));
-            }
         }
 
         public class AddAssigmentCommand : ICommand
@@ -61,7 +56,12 @@ namespace ToDo
 
             public void Execute(object parameter)
             {
-                _mainWindowViewModel._assigments.Add(new AssigmentViewModel(_mainWindowViewModel.AssigmentText));
+                var assigmentViewModel = new AssigmentViewModel(_mainWindowViewModel.AssigmentText);
+                _mainWindowViewModel._assigments.Add(assigmentViewModel);
+                foreach (var tagViewModel in assigmentViewModel.Tags)
+                {
+                    _mainWindowViewModel._avalibleTags.Add(tagViewModel);
+                }
             }
 
             public event EventHandler CanExecuteChanged;

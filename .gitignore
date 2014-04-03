@@ -7,3 +7,5 @@
 **/packages/**
 
 *.suo
+/packages
+/ToDo.sln.DotSettings.user

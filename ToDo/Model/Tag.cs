@@ -1,8 +1,8 @@
-﻿namespace ToDo
+namespace ToDo.Model
 {
-    public class TagViewModel
+    public class Tag : ITag
     {
-        public TagViewModel(string text)
+        public Tag(string text)
         {
             Text = text;
         }

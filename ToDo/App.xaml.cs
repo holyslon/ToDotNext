@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using ToDo.ViewModel;
 
 namespace ToDo
 {
@@ -15,7 +16,7 @@ namespace ToDo
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            MainWindow = new MainWindow {DataContext = new MainWindowViewModel()};
+            MainWindow = new MainWindow {DataContext = ApplicationFactory.CreateWindowViewModel()};
             MainWindow.Show();
         }
     }

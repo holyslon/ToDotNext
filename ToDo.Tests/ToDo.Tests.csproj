@@ -46,7 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcceptanceTests.cs" />
+    <Compile Include="ApplicationFactory.cs" />
+    <Compile Include="Model\AddAssigmentServiceTests.cs" />
+    <Compile Include="Model\AssigmentCacheTests.cs" />
+    <Compile Include="Model\TagsCacheTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AssigmentViewModelTests.cs" />
+    <Compile Include="ViewModel\MainWindowViewModelTests.cs" />
+    <Compile Include="ViewModel\TagViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

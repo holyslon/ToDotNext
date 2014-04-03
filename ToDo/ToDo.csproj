@@ -56,8 +56,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AssigmentViewModel.cs" />
-    <Compile Include="TagViewModel.cs" />
+    <Compile Include="ApplicationFactory.cs" />
+    <Compile Include="Model\AddAssigmentService.cs" />
+    <Compile Include="Model\Assigment.cs" />
+    <Compile Include="Model\AssigmentCache.cs" />
+    <Compile Include="Model\IAddAssigmentService.cs" />
+    <Compile Include="Model\IAssigment.cs" />
+    <Compile Include="Model\IAssigmentsCache.cs" />
+    <Compile Include="Model\ITag.cs" />
+    <Compile Include="Model\ITagsCache.cs" />
+    <Compile Include="Model\Tag.cs" />
+    <Compile Include="Model\TagsCache.cs" />
+    <Compile Include="ViewModel\AssigmentViewModel.cs" />
+    <Compile Include="ViewModel\IAssigmentViewModel.cs" />
+    <Compile Include="ViewModel\ITagViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\TagViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,7 +86,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -98,6 +111,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

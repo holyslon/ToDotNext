@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using ToDo.Model;
+using ToDo.ViewModel;
 using Xunit;
 
 namespace ToDo.Tests
@@ -7,100 +9,93 @@ namespace ToDo.Tests
     
     public class AcceptanceTests
     {
+        private const string SomeNewAssigmentText = "some new assigment text";
+        private readonly MainWindowViewModel _mainWindowViewModel;
+        private readonly string[] _tags = new[]{"work", "home", "csharp"};
+
+        public AcceptanceTests()
+        {
+            _mainWindowViewModel = ApplicationFactory.CreateWindowViewModel();
+        }
+
         [Fact]
         public void CreatesNewAssigmentOnAddAssigmentCommand()
         {
-            var mainWindowViewModel = new MainWindowViewModel();
+            _mainWindowViewModel.AssigmentText = SomeNewAssigmentText;
 
-            const string newAssigmentText = "some new assigment text";
-            mainWindowViewModel.AssigmentText = newAssigmentText;
+            _mainWindowViewModel.AddAssigment.Execute(null);
 
-            mainWindowViewModel.AddAssigment.Execute(null);
-
-            Assert.Equal(newAssigmentText, mainWindowViewModel.Assigments[0].Text);
+            Assert.Equal(SomeNewAssigmentText, _mainWindowViewModel.Assigments[0].Text);
         }
 
         [Fact]
         public void AddsMentionedTagsToCreatedAssigment()
         {
-            var mainWindowViewModel = new MainWindowViewModel();
 
-            const string newAssigmentText = "some new assigment text";
-            var tags = new[]{"work", "home", "csharp"};
+            var fullAssigmentString = SomeNewAssigmentText + " " + string.Join(" ", _tags.Select(s => "#" + s));
 
-            var fullAssigmentString = newAssigmentText +" " + string.Join(" ", tags.Select(s => "#" + s));
+            _mainWindowViewModel.AssigmentText = fullAssigmentString;
 
-            mainWindowViewModel.AssigmentText = fullAssigmentString;
+            _mainWindowViewModel.AddAssigment.Execute(null);
 
-            mainWindowViewModel.AddAssigment.Execute(null);
-
-            Assert.Equal(newAssigmentText, mainWindowViewModel.Assigments[0].Text);
-            Assert.Equal(tags[0], mainWindowViewModel.Assigments[0].Tags[0].Text);
-            Assert.Equal(tags[1], mainWindowViewModel.Assigments[0].Tags[1].Text);
-            Assert.Equal(tags[2], mainWindowViewModel.Assigments[0].Tags[2].Text);
+            Assert.Equal(SomeNewAssigmentText, _mainWindowViewModel.Assigments[0].Text);
+            Assert.Equal(_tags[0], _mainWindowViewModel.Assigments[0].Tags[0].Text);
+            Assert.Equal(_tags[1], _mainWindowViewModel.Assigments[0].Tags[1].Text);
+            Assert.Equal(_tags[2], _mainWindowViewModel.Assigments[0].Tags[2].Text);
         }
 
         [Fact]
         public void DoesNotRemoveTagFromMiddleOffString()
         {
-            var mainWindowViewModel = new MainWindowViewModel();
 
-            const string newAssigmentText = "some new assigment text";
-            var tags = new[] { "work", "home", "csharp" };
 
-            var fullAssigmentString = "#dotnext " + newAssigmentText + " " + string.Join(" ", tags.Select(s => "#" + s));
+            var fullAssigmentString = "#dotnext " + SomeNewAssigmentText + " " + string.Join(" ", _tags.Select(s => "#" + s));
 
-            mainWindowViewModel.AssigmentText = fullAssigmentString;
+            _mainWindowViewModel.AssigmentText = fullAssigmentString;
 
-            mainWindowViewModel.AddAssigment.Execute(null);
+            _mainWindowViewModel.AddAssigment.Execute(null);
 
-            Assert.Equal("dotnext " + newAssigmentText, mainWindowViewModel.Assigments[0].Text);
-            Assert.Equal("dotnext", mainWindowViewModel.Assigments[0].Tags[0].Text);
-            Assert.Equal(tags[0], mainWindowViewModel.Assigments[0].Tags[1].Text);
-            Assert.Equal(tags[1], mainWindowViewModel.Assigments[0].Tags[2].Text);
-            Assert.Equal(tags[2], mainWindowViewModel.Assigments[0].Tags[3].Text);
+            Assert.Equal("dotnext " + SomeNewAssigmentText, _mainWindowViewModel.Assigments[0].Text);
+            Assert.Equal("dotnext", _mainWindowViewModel.Assigments[0].Tags[0].Text);
+            Assert.Equal(_tags[0], _mainWindowViewModel.Assigments[0].Tags[1].Text);
+            Assert.Equal(_tags[1], _mainWindowViewModel.Assigments[0].Tags[2].Text);
+            Assert.Equal(_tags[2], _mainWindowViewModel.Assigments[0].Tags[3].Text);
         }
 
         [Fact]
         public void NewTagsAppearsinMainTagList()
         {
-            var mainWindowViewModel = new MainWindowViewModel();
 
-            const string newAssigmentText = "some new assigment text";
-            var tags = new[] { "work", "home", "csharp" };
 
-            var fullAssigmentString = newAssigmentText + " " + string.Join(" ", tags.Select(s => "#" + s));
+            var fullAssigmentString = SomeNewAssigmentText + " " + string.Join(" ", _tags.Select(s => "#" + s));
 
-            mainWindowViewModel.AssigmentText = fullAssigmentString;
+            _mainWindowViewModel.AssigmentText = fullAssigmentString;
 
-            mainWindowViewModel.AddAssigment.Execute(null);
+            _mainWindowViewModel.AddAssigment.Execute(null);
 
-            Assert.Equal(tags[0], mainWindowViewModel.AvalibleTags[0].Text);
-            Assert.Equal(tags[1], mainWindowViewModel.AvalibleTags[1].Text);
-            Assert.Equal(tags[2], mainWindowViewModel.AvalibleTags[2].Text); 
+            Assert.Equal(_tags[0], _mainWindowViewModel.AvalibleTags[0].Text);
+            Assert.Equal(_tags[1], _mainWindowViewModel.AvalibleTags[1].Text);
+            Assert.Equal(_tags[2], _mainWindowViewModel.AvalibleTags[2].Text); 
         }
 
         [Fact]
         public void TagsInAvalibleTagsShouldBeUnique()
         {
-            var mainWindowViewModel = new MainWindowViewModel();
 
-            const string newAssigmentText = "some new assigment text";
-            var tags = new[] { "work", "home", "csharp" };
 
-            var fullAssigmentString = newAssigmentText + " " + string.Join(" ", tags.Select(s => "#" + s));
+            var fullAssigmentString = SomeNewAssigmentText + " " + string.Join(" ", _tags.Select(s => "#" + s));
 
-            mainWindowViewModel.AssigmentText = fullAssigmentString;
+            _mainWindowViewModel.AssigmentText = fullAssigmentString;
 
-            mainWindowViewModel.AddAssigment.Execute(null);
+            _mainWindowViewModel.AddAssigment.Execute(null);
 
-            mainWindowViewModel.AddAssigment.Execute(null);
+            _mainWindowViewModel.AddAssigment.Execute(null);
 
-            Assert.Equal(tags[0], mainWindowViewModel.AvalibleTags[0].Text);
-            Assert.Equal(tags[1], mainWindowViewModel.AvalibleTags[1].Text);
-            Assert.Equal(tags[2], mainWindowViewModel.AvalibleTags[2].Text);
+            Assert.Equal(_tags[0], _mainWindowViewModel.AvalibleTags[0].Text);
+            Assert.Equal(_tags[1], _mainWindowViewModel.AvalibleTags[1].Text);
+            Assert.Equal(_tags[2], _mainWindowViewModel.AvalibleTags[2].Text);
  
-            Assert.Equal(3, mainWindowViewModel.AvalibleTags.Count);
+            Assert.Equal(3, _mainWindowViewModel.AvalibleTags.Count);
         }
     }
 }

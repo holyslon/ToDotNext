@@ -60,6 +60,7 @@ namespace ToDo
                 _mainWindowViewModel._assigments.Add(assigmentViewModel);
                 foreach (var tagViewModel in assigmentViewModel.Tags)
                 {
+                    if (_mainWindowViewModel._avalibleTags.Any(model => model.Text == tagViewModel.Text)) continue;
                     _mainWindowViewModel._avalibleTags.Add(tagViewModel);
                 }
             }

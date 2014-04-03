@@ -26,9 +26,9 @@ namespace ToDo.Tests
             var mainWindowViewModel = new MainWindowViewModel();
 
             const string newAssigmentText = "some new assigment text";
-            var tags = new[]{"work", "home", "c#"};
+            var tags = new[]{"work", "home", "csharp"};
 
-            var fullAssigmentString = newAssigmentText + string.Join(" ", tags.Select(s => "@" + s));
+            var fullAssigmentString = newAssigmentText +" " + string.Join(" ", tags.Select(s => "#" + s));
 
             mainWindowViewModel.AssigmentText = fullAssigmentString;
 

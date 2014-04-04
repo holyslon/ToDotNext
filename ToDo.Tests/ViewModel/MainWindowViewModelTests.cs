@@ -37,13 +37,13 @@ namespace ToDo.Tests.ViewModel
             Substitute.For<ITag>()
         };
 
-        private readonly Func<ITag, ITagViewModel> _tagViewModelFactory = Substitute.For<Func<ITag, ITagViewModel>>();
+        private readonly Func<ITag, ISelectableTagViewModel> _tagViewModelFactory = Substitute.For<Func<ITag, ISelectableTagViewModel>>();
 
-        private readonly List<ITagViewModel> _tagsViewModel = new List<ITagViewModel>
+        private readonly List<ISelectableTagViewModel> _tagsViewModel = new List<ISelectableTagViewModel>
         {
-            Substitute.For<ITagViewModel>(),
-            Substitute.For<ITagViewModel>(),
-            Substitute.For<ITagViewModel>()
+            Substitute.For<ISelectableTagViewModel>(),
+            Substitute.For<ISelectableTagViewModel>(),
+            Substitute.For<ISelectableTagViewModel>()
         };
 
         private readonly MainWindowViewModel _mainWindowViewModel;
@@ -53,7 +53,7 @@ namespace ToDo.Tests.ViewModel
         {
             var tag = Substitute.For<ITag>();
             _tags.Add(tag);
-            var tagViewModel = Substitute.For<ITagViewModel>();
+            var tagViewModel = Substitute.For<ISelectableTagViewModel>();
             _tagsViewModel.Add(tagViewModel);
 
             _tagViewModelFactory(tag).Returns(tagViewModel);
@@ -61,7 +61,7 @@ namespace ToDo.Tests.ViewModel
             return tag;
         }
 
-        private ITagViewModel ViewModelForTag(ITag tag)
+        private ISelectableTagViewModel ViewModelForTag(ITag tag)
         {
             return _tagsViewModel[_tags.IndexOf(tag)];
         }

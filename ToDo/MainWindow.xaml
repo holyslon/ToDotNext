@@ -24,8 +24,8 @@
             <ItemsControl Margin="0,0,0,0" ItemsSource="{Binding AvalibleTags}">
                 <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal"></StackPanel></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type viewModel:TagViewModel}">
-                        <ToggleButton Background="White" BorderBrush="White"  Margin="0,0,0,0">
+                    <DataTemplate DataType="{x:Type viewModel:SelectableTagViewModel}">
+                        <ToggleButton Background="White" BorderBrush="White"  Margin="0,0,0,0" IsChecked="{Binding IsSelected}">
                             <TextBlock Foreground="Blue" Text="{Binding Text, StringFormat={}#{0}}"></TextBlock>
                         </ToggleButton>
                     </DataTemplate>
@@ -36,7 +36,7 @@
             <ItemsControl ItemsSource="{Binding Assigments}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type viewModel:AssigmentViewModel}">
-                        <Border BorderThickness="1" BorderBrush="Black" CornerRadius="0" Height="60" Margin="5,0,5,5">
+                        <Border Visibility="{Binding Visibility}" BorderThickness="1" BorderBrush="Black" CornerRadius="0" Height="60" Margin="5,0,5,5">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition />

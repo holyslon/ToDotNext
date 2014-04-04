@@ -13,15 +13,15 @@ namespace ToDo.ViewModel
     {
         private readonly IAddAssigmentService _addAssigmentService;
         private readonly Func<IAssigment, IAssigmentViewModel> _assigmentViewModelFactory;
-        private readonly Func<ITag, ITagViewModel> _tagViewModelFactory;
+        private readonly Func<ITag, ISelectableTagViewModel> _tagViewModelFactory;
         private string _assigmentText;
         private readonly ObservableCollection<IAssigmentViewModel> _assigments = new ObservableCollection<IAssigmentViewModel>();
-        private readonly ObservableCollection<ITagViewModel> _avalibleTags = new ObservableCollection<ITagViewModel>();
+        private readonly ObservableCollection<ISelectableTagViewModel> _avalibleTags = new ObservableCollection<ISelectableTagViewModel>();
         public string ApplicationTitle { get; private set; }
 
         public ReadOnlyObservableCollection<IAssigmentViewModel> Assigments { get; private set; }
 
-        public ReadOnlyObservableCollection<ITagViewModel> AvalibleTags { get; private set; }
+        public ReadOnlyObservableCollection<ISelectableTagViewModel> AvalibleTags { get; private set; }
 
         public ICommand AddAssigment { get; private set; }
 
@@ -42,11 +42,11 @@ namespace ToDo.ViewModel
             ITagsCache tagsCache,
             IAddAssigmentService addAssigmentService,
             Func<IAssigment, IAssigmentViewModel> assigmentViewModelFactory,
-            Func<ITag, ITagViewModel> tagViewModelFactory)
+            Func<ITag, ISelectableTagViewModel> tagViewModelFactory)
         {
             ApplicationTitle = "ToDo";
             Assigments = new ReadOnlyObservableCollection<IAssigmentViewModel>(_assigments);
-            AvalibleTags = new ReadOnlyObservableCollection<ITagViewModel>(_avalibleTags);
+            AvalibleTags = new ReadOnlyObservableCollection<ISelectableTagViewModel>(_avalibleTags);
             AddAssigment = new AddAssigmentCommand(this);
             _addAssigmentService = addAssigmentService;
             _assigmentViewModelFactory = assigmentViewModelFactory;

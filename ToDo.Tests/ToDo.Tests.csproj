@@ -51,9 +51,11 @@
     <Compile Include="Model\AddAssigmentServiceTests.cs" />
     <Compile Include="Model\AssigmentCacheTests.cs" />
     <Compile Include="Model\TagsCacheTests.cs" />
+    <Compile Include="Model\TagVisibilityServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AssigmentViewModelTests.cs" />
     <Compile Include="ViewModel\MainWindowViewModelTests.cs" />
+    <Compile Include="ViewModel\SelectableTagViewModelTests.cs" />
     <Compile Include="ViewModel\TagViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

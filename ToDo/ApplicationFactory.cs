@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Media.Imaging;
 using ToDo.Model;
 using ToDo.ViewModel;
 
@@ -21,15 +22,17 @@ namespace ToDo
         {
             Func<string, ITag[], IAssigment> assigmentFactory = (s, tags) => new Assigment(s, tags);
             Func<ITag, ITagViewModel> tagViewModelFactory = (m) => new TagViewModel(m);
-            Func<IAssigment, IAssigmentViewModel> assigmentViewModelFactory = (m) => new AssigmentViewModel(m, tagViewModelFactory);
             var assigmentsCache = new AssigmentCache();
             var tagsCache = new TagsCache();
             var addAssigmentService = new AddAssigmentService(assigmentsCache, tagsCache, assigmentFactory, CreateTagFactory(tagsCache));
+            var tagVisibilityService = new TagVisibilityService();
+            Func<IAssigment, IAssigmentViewModel> assigmentViewModelFactory = (m) => new AssigmentViewModel(m, tagViewModelFactory, tagVisibilityService);
+            Func<ITag, ISelectableTagViewModel> selectableTagViewModelFactory = (m) => new SelectableTagViewModel(m, tagVisibilityService);
             return new MainWindowViewModel(assigmentsCache, 
                 tagsCache, 
                 addAssigmentService, 
-                assigmentViewModelFactory, 
-                tagViewModelFactory);
+                assigmentViewModelFactory,
+                selectableTagViewModelFactory);
         }
     }
 }

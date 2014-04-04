@@ -65,12 +65,16 @@
     <Compile Include="Model\IAssigmentsCache.cs" />
     <Compile Include="Model\ITag.cs" />
     <Compile Include="Model\ITagsCache.cs" />
+    <Compile Include="Model\ITagVisibilityService.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\TagsCache.cs" />
+    <Compile Include="Model\TagVisibilityService.cs" />
     <Compile Include="ViewModel\AssigmentViewModel.cs" />
     <Compile Include="ViewModel\IAssigmentViewModel.cs" />
+    <Compile Include="ViewModel\ISelectableTagViewModel.cs" />
     <Compile Include="ViewModel\ITagViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\SelectableTagViewModel.cs" />
     <Compile Include="ViewModel\TagViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

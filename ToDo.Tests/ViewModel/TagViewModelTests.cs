@@ -1,4 +1,5 @@
 ﻿using NSubstitute;
+using NSubstitute.Core;
 using ToDo.Model;
 using ToDo.ViewModel;
 using Xunit;
@@ -23,5 +24,6 @@ namespace ToDo.Tests.ViewModel
 
             Assert.Equal(text, _tagViewModel.Text);
         }
+
     }
 }

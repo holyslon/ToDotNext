@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using ToDo.Model;
 
 namespace ToDo.ViewModel
@@ -22,5 +23,6 @@ namespace ToDo.ViewModel
 
         public string Text { get { return _assigment.Text; } }
         public ReadOnlyObservableCollection<ITagViewModel> Tags { get; private set; }
+        public Visibility Visibility { get; private set; }
     }
 }

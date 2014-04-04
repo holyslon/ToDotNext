@@ -15,5 +15,7 @@ namespace ToDo.ViewModel
         {
             get { return _tag.Text; }
         }
+
+        public bool IsSelected { get; set; }
     }
 }

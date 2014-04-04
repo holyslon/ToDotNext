@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace ToDo.ViewModel
 {
@@ -6,5 +7,6 @@ namespace ToDo.ViewModel
     {
         string Text { get; }
         ReadOnlyObservableCollection<ITagViewModel> Tags { get; }
+        Visibility Visibility { get; }
     }
 }
